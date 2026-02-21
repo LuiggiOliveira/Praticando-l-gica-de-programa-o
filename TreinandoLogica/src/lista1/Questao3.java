@@ -34,7 +34,7 @@ public class Questao3 {
             binario /= 10;
 
             if (resto == 1){
-                decimal += Questao3.power(2, expoente);
+                decimal += power(2, expoente);
             }
 
             expoente++;
