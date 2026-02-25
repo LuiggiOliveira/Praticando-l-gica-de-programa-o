@@ -8,6 +8,7 @@ c) a média.
 
 package lista1;
 
+import java.sql.SQLOutput;
 import java.util.Arrays; //para ordenar usando array.sort()
 
 public class Questao8 {
@@ -45,27 +46,39 @@ public class Questao8 {
             return mediana;
         }
 
-        // Calculando a moda (aceita multimodal)
-        public static double calcularModa(double[] array){
+        // Calculando a moda -> ADICIONAR O CASO EM QUE NÃO TEM MODA
+        public static void calcularModa(double[] array){
 
-            int qtdModas = 1;
-            double[] modas = new double[qtdModas]; //sem ArrayList é triste...
+            int[] frequency = new int[array.length]; //ex: array = {2, 3, 3, 4} -> freq = {1, 2, 2, 1}
+            double[] moda = new double[array.length];
+            int maior = 0;
 
-            // PRIMEIRO PASSO: descobrir a maior frequência
-            int maiorFreq = 0;
-            int freqAtual = 1;
-
-
-            //agora a parte mais complicada: preencher o array moda para depois enfim mostrar o resultado sem repetição
-            System.out.println("Moda: ");
-            for  (int i : frequency) {
-                if (frequency[i] == maior){
-                    moda[i] = array[i];
-                    System.out.println(moda[i]);
+            for (int i = 0; i < array.length; i++) {
+                for (int j = i + 1; j < array.length; j++) {
+                    if (array[i] == array[j]) {
+                        frequency[j]++; //preenche as frequências de cada elemento associado a sua posição
+                    }
                 }
             }
-            System.out.println("Frequência absoluta: " + maior);
 
+            for (int i = 0; i < array.length; i++) {
+                if (frequency[i] > maior) {
+                    maior = frequency[i]; //define qual é a maior frequência absoluta
+                }
+            }
+
+            //agora a parte mais complicada: preencher o array moda e mostrar logo em seguida o elemento sem repetição
+            System.out.print("Moda: ");
+            for  (int i = 0; i < frequency.length; i++) {
+
+                if (frequency[i] == maior) {
+                    moda[i] = array[i];
+                    System.out.printf("%.2f ", moda[i]);
+                }
+
+            }
+            System.out.println("\nFrequência absoluta: " + (maior+1));
+            //OBS: EU NÃO FAÇO IDEIA COMO QUE EU CONSEGUI FAZER FUNCIONAR ISSO DE PRIMEIRA
         }
     }
 
@@ -77,6 +90,8 @@ public class Questao8 {
 
         System.out.printf("Média: %.2f\n", resultado1);
         System.out.printf("Mediana: %.2f\n", resultado2);
+
+        Estatistica.calcularModa(new double[]{8.7,8.7,8.5,8.5});
 
     }
 }
