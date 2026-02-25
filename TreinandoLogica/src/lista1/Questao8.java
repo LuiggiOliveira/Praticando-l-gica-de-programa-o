@@ -56,7 +56,16 @@ public class Questao8 {
             int freqAtual = 1;
 
 
-            return 1; //CONTINUAR DEPOIS, FÉRIAS ACABANDO E EU TENHO OUTRAS COISAS PARA ESTUDAR :(
+            //agora a parte mais complicada: preencher o array moda para depois enfim mostrar o resultado sem repetição
+            System.out.println("Moda: ");
+            for  (int i : frequency) {
+                if (frequency[i] == maior){
+                    moda[i] = array[i];
+                    System.out.println(moda[i]);
+                }
+            }
+            System.out.println("Frequência absoluta: " + maior);
+
         }
     }
 
