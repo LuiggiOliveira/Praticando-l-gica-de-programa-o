@@ -52,33 +52,62 @@ public class Questao8 {
             int[] frequency = new int[array.length]; //ex: array = {2, 3, 3, 4} -> freq = {1, 2, 2, 1}
             double[] moda = new double[array.length];
             int maior = 0;
+            int qtdFreqMax = 0; //representa o número de vezes em que a frequência máxima foi atingida
 
+
+            // PREENCHENDO O VETOR frequency
             for (int i = 0; i < array.length; i++) {
-                for (int j = i + 1; j < array.length; j++) {
+                for (int j = i; j < array.length; j++) {
+
+                    //conforme itera, enquanto haver elementos repetidos, para cada elemento de mesmo valor, vai sendo
+                    //incrementado até que seja o último elemento repetido daquele valor, resultando na frequência absoluta
                     if (array[i] == array[j]) {
-                        frequency[j]++; //preenche as frequências de cada elemento associado a sua posição
+                        frequency[i]++; //ex: {1, 2, 2, 3, 2, 2} -> freq = {1, 1, 2, 3, 3, _4_) -> maior = 4 -> moda = 2
                     }
                 }
             }
 
+            // DESCOBRINDO A MAIOR FREQUÊNCIA ABSOLUTA
             for (int i = 0; i < array.length; i++) {
                 if (frequency[i] > maior) {
                     maior = frequency[i]; //define qual é a maior frequência absoluta
                 }
             }
 
-            //agora a parte mais complicada: preencher o array moda e mostrar logo em seguida o elemento sem repetição
-            System.out.print("Moda: ");
-            for  (int i = 0; i < frequency.length; i++) {
+            // RESOLVENDO O CASO EM QUE É AMODAL COM *** MATEMÁTICA ***
 
+            for (int i = 0; i < array.length; i++) {
                 if (frequency[i] == maior) {
-                    moda[i] = array[i];
-                    System.out.printf("%.2f ", moda[i]);
+                    qtdFreqMax++;
                 }
-
             }
-            System.out.println("\nFrequência absoluta: " + (maior+1));
-            //OBS: EU NÃO FAÇO IDEIA COMO QUE EU CONSEGUI FAZER FUNCIONAR ISSO DE PRIMEIRA
+
+            //tendo que freqMax * qtdFreqMax = array.length
+            //ou seja, se eu tenho {1, 2, 3} -> freqMax = 1 | qtdFreqMax = 3 | array.length = 3
+            //e mudo para {1, 2, 3, 1, 2, 3} -> freqMax = 2 | qtdFreqMax = 3 | array.length = 6
+            //isso significa que quanto mais eu aumento a freqMax (x), para que se mantenha amodal é necessário que array.length (f(x))
+            //aumente proporcionalmente, assim como em uma função linear: f(x) = x * freqMax (freqMax é uma constante)
+            // * fim da palestrinha *
+
+            if(maior == 1 || qtdFreqMax * maior == array.length){
+                System.out.println("Amodal: Todos elementos do array possuem a mesma frequência");
+            }
+
+            else {
+                // PREENCHENDO VETOR moda E IMPRIMINDO SEUS ELEMENTOS (sem repetição)
+                System.out.print("Moda: ");
+                for (int i = 0; i < frequency.length; i++) {
+
+                    if (frequency[i] == maior) {
+                        moda[i] = array[i];
+                        System.out.printf("%.2f ", moda[i]);
+                    }
+
+                }
+            }
+
+
+            System.out.println("\nFrequência absoluta: " + maior);
         }
     }
 
@@ -91,7 +120,11 @@ public class Questao8 {
         System.out.printf("Média: %.2f\n", resultado1);
         System.out.printf("Mediana: %.2f\n", resultado2);
 
-        Estatistica.calcularModa(new double[]{8.7,8.7,8.5,8.5});
+        System.out.println("\nTeste 1 quando existe moda: ");
+        Estatistica.calcularModa(new double[]{8, 8, 8, 1, 2, 3, 1, 1, 2, 2});
+
+        System.out.println("\nTeste 2 quando não existe moda: ");
+        Estatistica.calcularModa(new double[]{8, 8, 8, 1, 2, 3, 3, 3, 1, 1, 2, 2});
 
     }
 }
