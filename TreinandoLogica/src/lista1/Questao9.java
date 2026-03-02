@@ -55,7 +55,6 @@ public class Questao9 {
             vetor[ultimo] = menorAtual;
             vetor[indiceMenor] = temp;
         }
-
         return vetor; //{9, 7, 6, 2, 1}
     }
 
