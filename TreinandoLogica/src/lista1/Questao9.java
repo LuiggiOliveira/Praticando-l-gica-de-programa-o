@@ -1,53 +1,82 @@
+/*
+Escreva uma classe em java que receba um vetor com 10 valores inteiros e ordene os mesmo em ordem crescente.
+(fiquei muito tempo tentando várias ideias para evitar usar o bubbleSort, mas sinto que vou ter que me render a ele se eu quiser
+continuar fazendo essa lista até ir para a segunda logo)
+*/
+
 package lista1;
 
 public class Questao9 {
 
-    //toda vez que eu chamar ela, ela me retorna o maior do vetor inserido
-    public static int maior(int[] vetor){
-        int maior = 0;
+    // diferentemente no bubblesort que mexe toda hora nos dados, trocando loucamente, esse só troca quando necessário, custando menos na memória
+    public static int[] orderByASC(int[] vetor) {
 
-        for (int i : vetor) {
-            if (i > maior) {
-                maior = i;
+        int ultimo; // Bingo: era exatamente disso que eu precisava, uma forma de dizer até onde a busca deve ir, uma "parede móvel"
+
+        for (ultimo = vetor.length - 1; ultimo > 0; ultimo--) {
+            //vetor = {2, 1, 9, 6, 7}
+            int indiceMaior = 0;
+            int maiorAtual = vetor[0];
+
+            //Vai procurar o maior valor até onde a parede está delimitando no vetor
+            for (int i = 1; i <= ultimo; i++) {
+                if (vetor[i] > maiorAtual) {
+                    indiceMaior = i;
+                    maiorAtual = vetor[i];
+                }
             }
+
+            int temp = vetor[ultimo]; //9, ultimo = 4 |7, ultimo = 3 |6, ultimo = 2|2, ultimo = 1|1, ultimo = 0 | STOP
+            vetor[ultimo] = maiorAtual;
+            vetor[indiceMaior] = temp;
         }
 
-        return maior;
+        return vetor;
     }
 
-    //toda vez que eu colocar o próximo maior elemento, recorta esse pedaço e retorna outro vetor
-    public static int[] recortar(int[] vetor){
+    public static int[] orderByDESC(int[] vetor) {
 
-        //vetor = {5, 2, 1, 3} -> return vetor_recortado = {2, 1, 3} (remove o maior)
-        //o vetor vai sendo recortado várias vezes a cada chamada, depois ele retorna para a função principal até sobrar um elemento
-        int[] vetor_recortado = new int[vetor.length-1];
-        int maior = maior(vetor); //nesse caso é 5, então maior = 5
+        int ultimo;
 
-        for (int i : vetor){
-            if(i )
+        for (ultimo = vetor.length - 1; ultimo > 0; ultimo--) {
+            //vetor = {2, 1, 9, 6, 7}
+            int indiceMaior = 0;
+            int menorAtual = vetor[0];
+
+            //Vai procurar o menor valor até onde a parede está delimitando no vetor
+            for (int i = 1; i <= ultimo; i++) {
+                if (vetor[i] < menorAtual) {
+                    indiceMaior = i;
+                    menorAtual = vetor[i];
+                }
+            }
+
+            int temp = vetor[ultimo]; //1, ultimo = 4 |2, ultimo = 3 |6, ultimo = 2|7, ultimo = 1|9, ultimo = 0 | STOP
+            vetor[ultimo] = menorAtual;
+            vetor[indiceMaior] = temp;
         }
 
-
-        return vetor_recortado;
-    }
-
-    public static void orderByASC(int[] vetor){
-
-        int[] aux = new int[vetor.length]; //vetor que vai retornar pro usuário de fato
-
-
+        return vetor; //{9, 7, 6, 2, 1}
     }
 
     public static void main(String[] args) {
-        int[] vetor = {5, 4, 1, 6, 9, 2, 3, 7, 8, 5};
+        int[] vetor = {2, 1, 9, 7, 6, 5, 0, 4, 3, 0, 9, 5};
 
         System.out.println("Vetor inicial");
-        for (int i = 1; i < vetor.length; i++) {
-            System.out.print(vetor[i] + " ");
+        for (int j : vetor) {
+            System.out.print(j + " ");
         }
 
-        System.out.println("\nVetor final");
-        System.out.println(1.0/7.0);
+        System.out.println("\nVetor em ordem crescente");
+        for (int i : orderByASC(vetor)) {
+            System.out.print(i + " ");
+        }
+
+        System.out.println("\nVetor em ordem decrescente");
+        for (int i : orderByDESC(vetor)) {
+            System.out.print(i + " ");
+        }
+        //FINALMENTE, essa deu mais trabalho que a anterior...
     }
 
 }
