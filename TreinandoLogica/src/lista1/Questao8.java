@@ -104,6 +104,7 @@ public class Questao8 {
         //obs: é interessante notar que eu não precisei fazer por exemplo: double[] array = new double[]{1,2,3,4,5}
         double resultado1 = Estatistica.calcularMedia(new double[]{8.8,8,9.3,8.5,8.7,8.7,8.3,8.2}); //aqui eu já coloco direto na função
         double resultado2 = Estatistica.calcularMediana( new double[]{8.8,8,9.3,8.5,8.7,8.7,8.3,8.2});
+
         System.out.printf("Média: %.2f\n", resultado1);
         System.out.printf("Mediana: %.2f\n", resultado2);
 

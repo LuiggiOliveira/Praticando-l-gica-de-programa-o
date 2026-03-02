@@ -61,6 +61,7 @@ public class Questao11 { //Lembranças de matrizes em Python...
                 matriz[linha][coluna] = valor;
             }
         }
+
         exibirMatriz(matriz);
         System.out.println("Soma da Diagonal Principal = " + calcDiagPrinc(matriz));
         System.out.println("Soma da Diagonal Secundaria = " + calcDiagSec(matriz));
