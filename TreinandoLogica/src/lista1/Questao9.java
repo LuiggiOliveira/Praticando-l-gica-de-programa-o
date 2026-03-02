@@ -40,20 +40,20 @@ public class Questao9 {
 
         for (ultimo = vetor.length - 1; ultimo > 0; ultimo--) {
             //vetor = {2, 1, 9, 6, 7}
-            int indiceMaior = 0;
+            int indiceMenor = 0;
             int menorAtual = vetor[0];
 
             //Vai procurar o menor valor até onde a parede está delimitando no vetor
             for (int i = 1; i <= ultimo; i++) {
                 if (vetor[i] < menorAtual) {
-                    indiceMaior = i;
+                    indiceMenor = i;
                     menorAtual = vetor[i];
                 }
             }
 
             int temp = vetor[ultimo]; //1, ultimo = 4 |2, ultimo = 3 |6, ultimo = 2|7, ultimo = 1|9, ultimo = 0 | STOP
             vetor[ultimo] = menorAtual;
-            vetor[indiceMaior] = temp;
+            vetor[indiceMenor] = temp;
         }
 
         return vetor; //{9, 7, 6, 2, 1}
