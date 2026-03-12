@@ -12,16 +12,14 @@ public class Questao17 {
 
     static Scanner ler = new Scanner(System.in);
 
-    public static int[][] preencherMatriz(int[][] matriz){
-        System.out.println("Preenchendo a matriz...");
+    public static void preencherMatriz(int[][] matriz){
+        System.out.println("[!] Digite um valor para cada posição 'linha x coluna' da matriz:");
         for (int i = 0; i < matriz.length; i++ ) { //matrizA.length retorna num de linhas
             for (int j = 0; j < matriz[i].length; j++ ) {//matrizA[i].length retorna tamanho de cada coluna
-                System.out.printf("%d,%d: \n", i, j);
+                System.out.printf("%d x %d: ", i+1, j+1);
                 matriz[i][j] = ler.nextInt();
             }
         }
-
-        return matriz;
     }
 
     public static void exibirMatriz(int[][] matriz){
@@ -45,7 +43,7 @@ public class Questao17 {
                 }
             }
         }
-
+        //TODO BOTAR NET NO PC PRA FUNCIONAR O COMMIT
         return matrizC;
     }
 
@@ -54,10 +52,24 @@ public class Questao17 {
         int[][] matrizB = new int [4][6];
         int[][] matrizC;
 
+        System.out.println("[*] Multiplicando matrizes");
+        System.out.println("[*] Se a Matriz A possui tamanho 5x4 e a Matriz B possui tamanho 4x6, então a Matriz C (resultado) é 6x6.\n");
+
         preencherMatriz(matrizA);
         preencherMatriz(matrizB);
+        System.out.println();
 
-        /*int[][] matrizA = {
+        matrizC = multiplicarMatriz(matrizA, matrizB);
+
+        exibirMatriz(matrizA);
+        exibirMatriz(matrizB);
+        exibirMatriz(matrizC);
+
+        ler.close();
+
+        /*
+        -- Exemplo de execução:
+        int[][] matrizA = {
                 {1, 2, 3, 4},
                 {5, 6, 7, 8},
                 {9,10,11,12},
@@ -68,15 +80,16 @@ public class Questao17 {
                 {7, 8, 9,10,11,12},
                 {13,14,15,16,17,18},
                 {19,20,21,22,23,24}};
+
+        -- resultado esperado:
+        matrizC = {
+            {130 140 150 160 170 180},
+            290 316 342 368 394 420},
+            450 492 534 576 618 660},
+            610 668 726 784 842 900},
+            770 844 918 992 1066 1140}
+        }
         */
-
-        matrizC = multiplicarMatriz(matrizA, matrizB);
-
-        exibirMatriz(matrizA);
-        exibirMatriz(matrizB);
-        exibirMatriz(matrizC);
-
-        ler.close();
     }
 
 }
