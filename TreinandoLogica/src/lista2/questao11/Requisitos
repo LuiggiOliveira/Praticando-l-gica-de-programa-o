@@ -1,0 +1,18 @@
+1. Implemente uma classe veículo que deve possuir os seguintes atributos: marca, quantidade de rodas, numero de marchas,
+modelo, velocidade, possuiMotor. (OK)
+2. A classe veículo também deve possuir os seguintes métodos: acelerar() que deve somar o
+valor passado a velocidade atual dos veículos, subtrair() que deve subtrair o valor passado da velocidade atual e
+imprimirInformações() que deve imprimir os valores dos atributos. (OK)
+3. A velocidade não pode ser menor que zero. (OK)
+
+4. Implemente uma subclasse Bicicleta que deve possuir os atributos tamanho (quadro) e o método imprimirInformações(). (OK)
+
+5. Implemente outra subclasse de Veículo denominada Automóvel que deve possuir o atributo potência do motor, numero de
+passageiros e o método imprimirInformações(). (OK)
+
+6. A partir da classe Veículo implemente a subclasse Carro que possui os
+atributos quantidade de portas e classificação(SUV, Sedan, Hatch). (OK)
+
+7. Implemente também a subclasse Caminhão que deve possuir os atributos quantidade de eixos e cargaMaxima.
+
+8. Crie também os métodos imprimirInformações para Carro e Caminhão.

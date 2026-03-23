@@ -1,0 +1,13 @@
+Crie uma classe Pessoa que deve possuir os atributos encapsulados: nome, idade, sexo.
+
+Crie uma subclasse denominada Empregado que deve possuir os atributos salario e matrícula, além de um método chamado inss()
+que deve retornar 11% do valor do salário.
+
+Crie outra subclasse de Pessoa denominada Cliente que deve possuir os atributos valorDivida e
+telefone.
+
+A partir da classe Empregado crie a subclasse Gerente que deve possuir o atributo setorGerência e a subclasse
+Vendedor que deve possuir os atributos setorVendas, valorVendas.
+
+//todo continuar aqui
+Crie uma classe que instancie 2 objetos Cliente, 1 gerente e 2 vendedores e imprima os valores de seus respectivos atributos.
